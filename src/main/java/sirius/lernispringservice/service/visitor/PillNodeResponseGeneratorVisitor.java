@@ -1,19 +1,18 @@
 package sirius.lernispringservice.service.visitor;
 
-import form.node.FormNodeType;
 import form.node.implementations.ActionNode;
 import form.node.implementations.QuestionNode;
-import sirius.lernispringservice.dto.PillNodeDTO;
+import sirius.lernispringservice.dto.NodeContentDTO;
 import visitor.Visitor;
 
-public class PillNodeResponseGeneratorVisitor implements Visitor<PillNodeDTO> {
+public class PillNodeResponseGeneratorVisitor implements Visitor<NodeContentDTO> {
     @Override
-    public PillNodeDTO visit(QuestionNode questionNode) {
-        return new PillNodeDTO(questionNode.getId(), FormNodeType.QUESTION, questionNode.getElement().getQuestionContent(), questionNode.getElement().getMetadata());
+    public NodeContentDTO visit(QuestionNode questionNode) {
+        return new NodeContentDTO(questionNode.getElement().getQuestionContent(), questionNode.getElement().getMetadata());
     }
 
     @Override
-    public PillNodeDTO visit(ActionNode actionNode) {
-        return new PillNodeDTO(actionNode.getId(), FormNodeType.ACTION, actionNode.getElement().getAction());
+    public NodeContentDTO visit(ActionNode actionNode) {
+        return new NodeContentDTO(actionNode.getElement().getAction());
     }
 }

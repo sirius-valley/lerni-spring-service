@@ -3,26 +3,23 @@ package sirius.lernispringservice.dto;
 import form.node.FormNodeType;
 import metadata.Metadata;
 
+import java.util.List;
+
 
 public class PillNodeDTO {
 
     private String nodeId;
     private FormNodeType type;
-    private String content;
-    private Metadata metadata;
+    private NodeContentDTO nodeContent;
+    private String answer;
 
-    public PillNodeDTO(String nodeId, FormNodeType type, String content){
+    public PillNodeDTO(String nodeId, FormNodeType type, NodeContentDTO nodeContent, String answer){
         this.nodeId = nodeId;
         this.type = type;
-        this.content = content;
+        this.answer = answer;
+        this.nodeContent = nodeContent;
     }
 
-    public PillNodeDTO(String nodeId, FormNodeType type, String content, Metadata metadata){
-        this.nodeId = nodeId;
-        this.type = type;
-        this.content = content;
-        this.metadata = metadata;
-    }
 
     public String getNodeId() {
         return nodeId;
@@ -32,11 +29,11 @@ public class PillNodeDTO {
         return type;
     }
 
-    public String getContent() {
-        return content;
+    public String getAnswers() {
+        return answer;
     }
 
-    public Metadata getMetadata() {
-        return metadata;
+    public NodeContentDTO getNodeContent() {
+        return nodeContent;
     }
 }

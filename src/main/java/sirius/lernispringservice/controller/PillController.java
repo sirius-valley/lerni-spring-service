@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sirius.lernispringservice.dto.PillNodeDTO;
+import sirius.lernispringservice.dto.PillProgressDTO;
 import sirius.lernispringservice.dto.PillRequestDTO;
 import sirius.lernispringservice.service.PillService;
 
@@ -27,7 +28,7 @@ public class PillController {
     }
 
     @GetMapping("/progress")
-    public ResponseEntity<List<PillNodeDTO>> getProgress(@RequestBody PillRequestDTO pillRequestDTO) throws ParseException, IOException {
+    public ResponseEntity<PillProgressDTO> getProgress(@RequestBody PillRequestDTO pillRequestDTO) throws ParseException, IOException {
         return new ResponseEntity<>(pillService.getPillProgress(pillRequestDTO), HttpStatus.OK);
     }
 }
