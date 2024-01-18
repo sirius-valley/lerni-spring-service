@@ -29,8 +29,8 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'com.siriussystem:dumbledore:1.0.0'
-    implementation 'com.siriussystem:engorgio:1.0.0'
+    implementation 'com.siriussystem:dumbledore:1.2.0'
+    implementation 'com.siriussystem:engorgio:1.1.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
