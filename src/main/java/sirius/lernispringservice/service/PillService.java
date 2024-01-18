@@ -26,10 +26,7 @@ public class PillService {
         Form pillForm = FormFactory.createFormFromJsonObject(pillRequestDTO.getPillForm());
 
         //add user's answers to a stack
-        List<PillAnswerDTO> answers = pillRequestDTO.getAnswers();
-        Collections.reverse(answers);
-        Stack<PillAnswerDTO> stack = new Stack<>();
-        stack.addAll(answers);
+        Stack<PillAnswerDTO> stack = getAnswerStack(pillRequestDTO);
 
         List<String> visitedIds = new ArrayList<>();
         visitedIds.add(pillForm.getInitial().getId());
@@ -55,13 +52,22 @@ public class PillService {
         return new PillProgressDTO(false, pillProgress);
     }
 
+
+    private Stack<PillAnswerDTO> getAnswerStack(PillRequestDTO pillRequestDTO) {
+        List<PillAnswerDTO> answers = pillRequestDTO.getAnswers();
+        Collections.reverse(answers);
+        Stack<PillAnswerDTO> stack = new Stack<>();
+        stack.addAll(answers);
+        return stack;
+    }
+
     private NodeContentDTO getResponseNodeDTOWithVisitor(FormNode value) {
         Visitor<NodeContentDTO> visitor = new PillNodeResponseGeneratorVisitor();
         Visitable visitable = (Visitable) value;
         return visitable.accept(visitor);
     }
 
-    private PillNodeDTO getPillNodeDTO(FormNode value, String answer) {
+    private PillNodeDTO getPillNodeDTO(FormNode value, Object answer) {
         NodeContentDTO nodeContentDTO = getResponseNodeDTOWithVisitor(value);
         return new PillNodeDTO(value.getId(), value.getType(), nodeContentDTO, answer);
     }

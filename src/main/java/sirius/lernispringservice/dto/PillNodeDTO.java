@@ -11,9 +11,9 @@ public class PillNodeDTO {
     private String nodeId;
     private FormNodeType type;
     private NodeContentDTO nodeContent;
-    private String answer;
+    private Object answer;
 
-    public PillNodeDTO(String nodeId, FormNodeType type, NodeContentDTO nodeContent, String answer){
+    public PillNodeDTO(String nodeId, FormNodeType type, NodeContentDTO nodeContent, Object answer){
         this.nodeId = nodeId;
         this.type = type;
         this.answer = answer;
@@ -29,7 +29,7 @@ public class PillNodeDTO {
         return type;
     }
 
-    public String getAnswers() {
+    public Object getAnswer() {
         return answer;
     }
 

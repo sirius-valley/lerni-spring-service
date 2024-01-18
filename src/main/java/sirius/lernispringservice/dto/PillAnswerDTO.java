@@ -5,10 +5,10 @@ import java.util.Map;
 public class PillAnswerDTO {
 
     private String questionId;
-    private String value;
+    private Object value;
     private Map<String, Object> params;
 
-    public PillAnswerDTO (String questionId, String value, Map<String, Object> params){
+    public PillAnswerDTO (String questionId, Object value, Map<String, Object> params){
         this.questionId = questionId;
         this.value = value;
         this.params = params;
@@ -18,7 +18,7 @@ public class PillAnswerDTO {
         return questionId;
     }
 
-    public String getValue() {
+    public Object getValue() {
         return value;
     }
 
