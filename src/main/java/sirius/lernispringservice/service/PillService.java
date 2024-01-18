@@ -53,6 +53,40 @@ public class PillService {
     }
 
 
+    public PillProgressDTO answerQuestion(AnswerRequestDTO answerRequestDTO) throws ParseException, IOException {
+        //create form from json object
+        Form pillForm = FormFactory.createFormFromJsonObject(answerRequestDTO.getPillForm());
+
+        List<String> visitedIds = new ArrayList<>();
+        visitedIds.add(answerRequestDTO.getAnswer().getQuestionId());
+        List<PillNodeDTO> pillProgress = new ArrayList<>();
+
+        if(!pillForm.hasNext(visitedIds)){
+            return new PillProgressDTO(true, pillProgress);
+        }
+
+        FormTransitionResult answerResult = pillForm.getNext(answerRequestDTO.getAnswer().getValue(), visitedIds);
+        visitedIds.add(answerResult.getValue().getId());
+        answerResult.getValue();
+        FormNode current;
+
+        do {
+            current = pillForm.getCurrent(visitedIds);
+            FormTransitionResult result;
+            pillProgress.add(getPillNodeDTO(current, ""));
+            if (current.getType() == FormNodeType.QUESTION) {
+                return new PillProgressDTO(false, pillProgress);
+            } else {
+                if (!current.hasNext()) return new PillProgressDTO(true, pillProgress);
+                result = pillForm.getNext("answer", visitedIds);
+            }
+            visitedIds.add(result.getValue().getId());
+        } while (current.hasNext());
+
+        return new PillProgressDTO(true, pillProgress);
+    }
+
+
     private Stack<PillAnswerDTO> getAnswerStack(PillRequestDTO pillRequestDTO) {
         List<PillAnswerDTO> answers = pillRequestDTO.getAnswers();
         Collections.reverse(answers);
