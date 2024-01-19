@@ -1,0 +1,25 @@
+package sirius.lernispringservice.util;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import java.nio.charset.StandardCharsets;
+
+@Service
+public class JwtUtil {
+
+    private String secret;
+
+    @Value("${jwt.secret}")
+    public void setSecret(String secret) {
+        this.secret = secret;
+    }
+
+    public String validateToken(String authToken) {
+        System.out.println(secret);
+        Claims claims = Jwts.parserBuilder().setSigningKey(secret.getBytes()).build().parseClaimsJws(authToken).getBody();
+        return claims.getSubject();
+    }
+}
