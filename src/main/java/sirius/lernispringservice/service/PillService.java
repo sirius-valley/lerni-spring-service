@@ -103,6 +103,6 @@ public class PillService {
 
     private PillNodeDTO getPillNodeDTO(FormNode value, Object answer) {
         NodeContentDTO nodeContentDTO = getResponseNodeDTOWithVisitor(value);
-        return new PillNodeDTO(value.getId(), value.getType(), nodeContentDTO, answer);
+        return new PillNodeDTO(value.getId(), value.getType(), nodeContentDTO, value.getType() == FormNodeType.QUESTION ? answer : "");
     }
 }
