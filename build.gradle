@@ -18,7 +18,7 @@ repositories {
         name "GitLab"
         credentials(HttpHeaderCredentials) {
             name = "Private-Token"
-            value = project.findProperty('gitlab.token') ?: System.getenv('gitlabToken')
+            value = System.getenv('GITLAB_TOKEN')
         }
         authentication {
             header(HttpHeaderAuthentication)
