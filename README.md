@@ -6,4 +6,13 @@ Before running the application, you need to create a `.env` file in the root dir
 
 ```
 JWT_SECRET=samelernisecret
+GITLAB_TOKEN=token
+```
+
+## Docker
+
+To run the application in a docker container, you need to have docker installed on your machine. Then, you can run the following commands:
+
+```
+docker compose up --build
 ```
