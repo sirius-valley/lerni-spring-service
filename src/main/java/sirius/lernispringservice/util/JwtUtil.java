@@ -18,7 +18,6 @@ public class JwtUtil {
     }
 
     public String validateToken(String authToken) {
-        System.out.println(secret);
         Claims claims = Jwts.parserBuilder().setSigningKey(secret.getBytes()).build().parseClaimsJws(authToken).getBody();
         return claims.getSubject();
     }
