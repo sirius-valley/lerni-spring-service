@@ -8,6 +8,7 @@ on:
 jobs:
 
   deploy-dev:
+    environment: development
 
     name: Build Image
     runs-on: ubuntu-latest
