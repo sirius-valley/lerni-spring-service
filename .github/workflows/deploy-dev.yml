@@ -37,11 +37,11 @@ jobs:
           ECR_REPO: ${{ secrets.ECR_REPOSITORY }}
           IMAGE_TAG: ${{ github.sha }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          GITLAB: ${{ secrets.GITLAB_TOKEN }}
           ENVIRONMENT: development
 
         run: |
-          docker build --build-arg JWT_SECRET=$JWT_SECRET --build-arg GITLAB_TOKEN=$GITLAB_TOKEN --build-arg ENVIRONMENT=$ENVIRONMENT -t $ECR_REPO:$IMAGE_TAG .
+          docker build --build-arg JWT_SECRET=$JWT_SECRET --build-arg GITLAB_TOKEN=GITLAB --build-arg ENVIRONMENT=$ENVIRONMENT -t $ECR_REPO:$IMAGE_TAG .
           docker tag $ECR_REPO:$IMAGE_TAG $ECR_REPO:latest
           docker push $ECR_REPO:$IMAGE_TAG
           docker push $ECR_REPO:latest
