@@ -61,7 +61,7 @@ jobs:
           envs: AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_REGION,ECR_REPO,IMAGE_TAG
           script: |
             # Stop and remove the existing container
-            CONTAINER_ID=$(sudo docker ps -q --filter "publish=8080:8080")
+            CONTAINER_ID=$(sudo docker ps -q --filter "publish=8080")
             if [ ! -z "$CONTAINER_ID" ]; then
               sudo docker stop $CONTAINER_ID
               sudo docker rm $CONTAINER_ID
