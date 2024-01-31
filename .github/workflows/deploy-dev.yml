@@ -87,4 +87,4 @@ jobs:
             sudo docker pull $ECR_REPO:$IMAGE_TAG
             
             # Run the updated container
-            sudo docker run -d -p 8080:8080 --name=spring_container --network=my_network  $ECR_REPO:$IMAGE_TAG
+            sudo docker run -d -p 8080:8080 --name=spring-container --network=my_network  $ECR_REPO:$IMAGE_TAG
