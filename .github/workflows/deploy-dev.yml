@@ -60,17 +60,17 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           envs: AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_REGION,ECR_REPO,IMAGE_TAG
           script: |
-            # Stop and remove the container running on port 8080
+            # Stop and remove the existing container
             CONTAINER_ID=$(sudo docker ps -q --filter "publish=8080:8080")
             if [ ! -z "$CONTAINER_ID" ]; then
-             sudo docker kill $CONTAINER_ID
-             sudo docker rm $CONTAINER_ID
+              sudo docker stop $CONTAINER_ID
+              sudo docker rm $CONTAINER_ID
             fi
             
-            # Remove the image
+            # Remove the existing image
             IMAGE_ID=$(sudo docker images -q $ECR_REPO:$IMAGE_TAG)
             if [ ! -z "$IMAGE_ID" ]; then
-             sudo docker rmi -f $IMAGE_ID
+              sudo docker rmi -f $IMAGE_ID
             fi
             
             # Clean up other containers and images
