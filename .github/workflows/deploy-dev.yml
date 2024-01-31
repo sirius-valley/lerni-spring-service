@@ -69,8 +69,7 @@ jobs:
 
             # Prune unused images and containers
             sudo docker image prune --force
-            sudo docker container prune --force
-            
+
             # Log in to ECR and pull the latest image
             AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY aws ecr get-login-password --region $AWS_REGION | sudo docker login --username AWS --password-stdin $ECR_REPO:$IMAGE_TAG
             sudo docker pull $ECR_REPO:$IMAGE_TAG
