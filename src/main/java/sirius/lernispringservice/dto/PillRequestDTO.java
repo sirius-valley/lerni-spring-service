@@ -1,13 +1,15 @@
 package sirius.lernispringservice.dto;
 
+import jakarta.validation.Valid;
 import org.json.simple.JSONObject;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
 public class PillRequestDTO {
 
     //stack instead
-    private List<PillAnswerDTO> answers;
+    private List<@Valid PillAnswerDTO> answers;
     private JSONObject pillForm;
 
     public PillRequestDTO (List<PillAnswerDTO> answers, JSONObject pillForm) {

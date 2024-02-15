@@ -1,10 +1,14 @@
 package sirius.lernispringservice.dto;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.json.simple.JSONObject;
 
 public class AnswerRequestDTO {
 
+    @Valid
     private PillAnswerDTO answer;
+    @NotNull
     private JSONObject pillForm;
 
 

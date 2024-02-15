@@ -1,5 +1,6 @@
 package sirius.lernispringservice.controller;
 
+import jakarta.validation.Valid;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,12 +25,12 @@ public class PillController {
     }
 
     @GetMapping("/progress")
-    public ResponseEntity<PillProgressDTO> getProgress(@RequestBody PillRequestDTO pillRequestDTO) throws ParseException, IOException {
+    public ResponseEntity<PillProgressDTO> getProgress(@Valid @RequestBody PillRequestDTO pillRequestDTO) throws ParseException, IOException {
         return new ResponseEntity<>(pillService.getPillProgress(pillRequestDTO), HttpStatus.OK);
     }
 
     @PostMapping("/answer")
-    public ResponseEntity<PillProgressDTO> answerQuestion(@RequestBody AnswerRequestDTO answerRequestDTO) throws ParseException, IOException {
+    public ResponseEntity<PillProgressDTO> answerQuestion(@Valid @RequestBody AnswerRequestDTO answerRequestDTO) throws ParseException, IOException {
         return new ResponseEntity<>(pillService.answerQuestion(answerRequestDTO), HttpStatus.OK);
     }
 }
