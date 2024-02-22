@@ -1,10 +1,13 @@
 package sirius.lernispringservice.dto;
 
+import jakarta.validation.constraints.NotNull;
 import java.util.Map;
 
 public class PillAnswerDTO {
 
+    @NotNull
     private String questionId;
+    @NotNull
     private Object value;
     private Map<String, Object> params;
 

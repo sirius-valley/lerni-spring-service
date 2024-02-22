@@ -1,5 +1,6 @@
 package sirius.lernispringservice.service;
 
+import exception.InvalidAnswerException;
 import factory.FormFactory;
 import form.Form;
 import form.node.FormNode;
@@ -63,13 +64,14 @@ public class PillService {
         visitedIds.add(answerRequestDTO.getAnswer().getQuestionId());
         List<PillNodeDTO> pillProgress = new ArrayList<>();
 
+        if (!pillForm.validateAnswer(answerRequestDTO.getAnswer().getValue(), visitedIds)) throw new InvalidAnswerException("Invalid answer");
+
         if (!pillForm.hasNext(visitedIds)) {
             return new PillProgressDTO(true, calculateProgress(pillJson, pillForm.getCurrent(visitedIds).getId()), pillProgress);
         }
 
         FormTransitionResult answerResult = pillForm.getNext(answerRequestDTO.getAnswer().getValue(), visitedIds);
         visitedIds.add(answerResult.getValue().getId());
-        answerResult.getValue();
         FormNode current;
 
         do {
