@@ -1,4 +1,4 @@
-name: Deploy Dockerized App to EC2 (Dev)
+name: Deploy Dockerized App to EC2 (prod)
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy-dev:
-    environment: development
+    environment: prod
 
     name: Build Image
     runs-on: ubuntu-latest
