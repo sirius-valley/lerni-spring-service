@@ -1,4 +1,4 @@
-name: Deploy Dockerized App to EC2 (prod)
+name: Deploy Dockerized App to EC2 (production)
 
 on:
   push:
